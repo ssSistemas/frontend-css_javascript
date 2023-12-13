@@ -4,7 +4,16 @@ window.alert('Olá mundo');
 function tocaSom(idElementoAudio) {
 
 
-    document.querySelector(idElementoAudio).play();
+    element = document.querySelector(idElementoAudio);
+
+    if (element && element.localName === "audio" ){
+       
+            element.play();
+    }else{
+            alert("Elemento nulo ou não é elemento de audio");
+    }
+        
+    
 }
 
 //document.querySelector('.tecla_pom').onclick = tocaSomPom;
@@ -29,4 +38,19 @@ for (const tecla of listaDeTeclas) {
     tecla.addEventListener('click', function () {
         tocaSom(idDinamico);
     });
+
+    tecla.addEventListener('keydown', function(){
+        if (event.keyCode == 32 || event.keyCode == 13 ){
+            tecla.classList.add('ativa');
+        }
+    } )
+
+    tecla.addEventListener('keyup', function(){
+        tecla.classList.remove('ativa');
+    } )
+
+
+
 }
+
+
